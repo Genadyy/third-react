@@ -8,7 +8,7 @@ import MyButton from "./components/UI/buttons/MyButton";
 import { usePosts } from "./hooks/usePosts";
 import PostService from "./API/PostService";
 import Loader from "./components/UI/loader/Loader";
-import { useLoading } from "./hooks/useLoader";
+import { useFetching } from "./hooks/useFetching";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -17,9 +17,7 @@ function App() {
 
   const [modal, setModal] = useState(false);
 
-  // const [isPostsLoading, setIsPostsLoading] = useState(false);
-
-  const [fetchPosts, isPostsLoading, postsError] = useLoading(async () => {
+  const [fetchPosts, isPostsLoading, postsError] = useFetching(async () => {
     const posts = await PostService.getAll();
     setPosts(posts);
   });
@@ -29,14 +27,6 @@ function App() {
   useEffect(() => {
     fetchPosts();
   }, []);
-
-  /* async function fetchPosts() {
-    setIsPostsLoading(true);
-    const posts = await PostService.getAll();
-    setPosts(posts);
-
-    setIsPostsLoading(false);
-  }*/
 
   const createPost = (newPost) => {
     if (newPost.title && newPost.body) {
@@ -59,6 +49,11 @@ function App() {
       </MyModal>
       <hr style={{ margin: "15px 0" }} />
       <PostFilter filter={filter} setFilter={setFilter} />
+      {postsError && (
+        <div style={{ margin: "50px", fontSize: "25px", fontWeight: "bold" }}>
+          The error occurred: ${postsError}
+        </div>
+      )}
       {isPostsLoading ? (
         <Loader />
       ) : (
