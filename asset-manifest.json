@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/third-react/static/css/main.7adeb2be.css",
+    "main.js": "/third-react/static/js/main.c65e0bdf.js",
+    "index.html": "/third-react/index.html",
+    "main.7adeb2be.css.map": "/third-react/static/css/main.7adeb2be.css.map",
+    "main.c65e0bdf.js.map": "/third-react/static/js/main.c65e0bdf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7adeb2be.css",
+    "static/js/main.c65e0bdf.js"
+  ]
+}
